@@ -71,29 +71,23 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
+
+
     /**
      * do api call here to fetch data from server
      * In example i'm adding data manually
      */
     private void doApiCall() {
-        final ArrayList<PostItem> items = new ArrayList<>();
         new Handler().postDelayed(new Runnable() {
 
             @Override
             public void run() {
-                for (int i = 0; i < 10; i++) {
-                    itemCount++;
-                    PostItem postItem = new PostItem();
-                    postItem.setTitle(getString(R.string.text_title) + itemCount);
-                    postItem.setDescription(getString(R.string.text_description));
-                    items.add(postItem);
-                }
                 // do this all stuff on Success of APIs response
                 /**
                  * manage progress view
                  */
                 if (currentPage != PAGE_START) adapter.removeLoading();
-                adapter.addItems(items);
+                adapter.addItems(get10NewPostItems());
                 swipeRefresh.setRefreshing(false);
 
                 // check weather is last page or not
@@ -104,7 +98,21 @@ public class MainActivity extends AppCompatActivity
                 }
                 isLoading = false;
             }
+
+
         }, 1500);
+    }
+
+    private ArrayList<PostItem> get10NewPostItems() {
+        final ArrayList<PostItem> items = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            PostItem postItem = new PostItem();
+            postItem.setTitle(getString(R.string.text_title) + itemCount);
+            postItem.setDescription(getString(R.string.text_description));
+            items.add(postItem);
+            itemCount++;
+        }
+        return items;
     }
 
     @Override

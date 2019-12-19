@@ -20,7 +20,7 @@ public class PostRecyclerAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     private List<PostItem> mPostItems;
 
-    public PostRecyclerAdapter(List<PostItem> postItems) {
+    PostRecyclerAdapter(List<PostItem> postItems) {
         this.mPostItems = postItems;
     }
 
